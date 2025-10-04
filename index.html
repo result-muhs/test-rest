@@ -3,68 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MUHS UG Result - Summer 2025</title>
+    <title>MUHS Result - Summer 2025</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
-        .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); overflow: hidden; }
-        .header { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 30px; text-align: center; }
-        .header h1 { font-size: 28px; margin-bottom: 10px; }
-        .header p { font-size: 16px; opacity: 0.9; }
-        .content { padding: 40px; }
-        .search-section { background: #f8f9fa; padding: 30px; border-radius: 8px; margin-bottom: 30px; }
-        .form-group { margin-bottom: 20px; }
-        label { display: block; font-weight: bold; margin-bottom: 8px; color: #333; }
-        input, select { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 5px; font-size: 16px; transition: border-color 0.3s; }
-        input:focus, select:focus { outline: none; border-color: #667eea; }
-        .btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 14px 40px; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; width: 100%; transition: transform 0.2s; }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4); }
-        .result-section { display: none; text-align: center; animation: fadeIn 0.5s; padding: 20px; }
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-        .result-image { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); margin: 20px 0; }
-        .result-text { padding: 30px; color: #333; font-weight: bold; font-size: 38px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
-        .btn-secondary { background: #6c757d; margin-top: 15px; }
-        .btn-secondary:hover { background: #5a6268; transform: translateY(-2px); }
-        .footer { background: #f8f9fa; padding: 20px; text-align: center; color: #666; font-size: 14px; }
-        .loading { display: none; padding: 40px; }
-        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #667eea; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #f5deb3;
+            min-height: 100vh; 
+            padding: 20px; 
+        }
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            background: #f5deb3;
+        }
+        .header { 
+            text-align: center; 
+            padding: 30px 20px 20px;
+        }
+        .header h1 { 
+            font-size: 22px; 
+            color: #cc0000; 
+            font-weight: bold;
+            margin-bottom: 30px;
+            font-family: Arial, sans-serif;
+            letter-spacing: 0.5px;
+        }
+        .title-link {
+            color: #0000ff;
+            text-decoration: underline;
+            font-size: 16px;
+            font-family: "Courier New", Courier, monospace;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 20px;
+        }
+        .content { 
+            padding: 20px; 
+        }
+        .search-section { 
+            background: white;
+            border: 2px solid #000;
+            padding: 30px; 
+            margin: 0 auto;
+            max-width: 700px;
+        }
+        .form-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .form-table td {
+            padding: 10px;
+        }
+        .form-table label { 
+            font-weight: normal;
+            color: #000;
+            font-size: 14px;
+        }
+        select, input[type="text"] { 
+            padding: 5px 8px;
+            border: 1px solid #666;
+            font-size: 14px;
+            background: white;
+        }
+        select {
+            min-width: 150px;
+        }
+        input[type="text"] {
+            width: 200px;
+        }
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .btn { 
+            background: #d3d3d3;
+            color: #000;
+            padding: 8px 30px;
+            border: 2px outset #999;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: normal;
+        }
+        .btn:hover { 
+            background: #c0c0c0;
+        }
+        .btn:active {
+            border-style: inset;
+        }
+        .result-section { 
+            display: none; 
+            text-align: center; 
+            animation: fadeIn 0.5s; 
+            padding: 20px; 
+        }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: scale(0.9); } 
+            to { opacity: 1; transform: scale(1); } 
+        }
+        .result-image { 
+            max-width: 100%; 
+            height: auto; 
+            border: 1px solid #999;
+            margin: 20px 0; 
+        }
+        .result-text { 
+            padding: 30px; 
+            color: #333; 
+            font-weight: bold; 
+            font-size: 38px; 
+        }
+        .btn-secondary { 
+            background: #d3d3d3;
+            margin-top: 15px; 
+            border: 2px outset #999;
+        }
+        .btn-secondary:hover { 
+            background: #c0c0c0;
+        }
+        .loading { 
+            display: none; 
+            padding: 40px; 
+            text-align: center;
+        }
+        .spinner { 
+            border: 4px solid #f3f3f3; 
+            border-top: 4px solid #cc0000; 
+            border-radius: 50%; 
+            width: 50px; 
+            height: 50px; 
+            animation: spin 1s linear infinite; 
+            margin: 0 auto 20px; 
+        }
+        @keyframes spin { 
+            0% { transform: rotate(0deg); } 
+            100% { transform: rotate(360deg); } 
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Maharashtra University of Health Sciences</h1>
-            <p>UG Result - Summer 2025 Examination</p>
+            <h1>MAHARASHTRA UNIVERSITY OF HEALTH SCIENCES, NASHIK</h1>
+            <span class="title-link">SUMMER-2025 Examinations MBBS(2023) Course Result</span>
         </div>
 
         <div class="content">
             <div class="search-section" id="searchSection">
-                <h3 style="margin-bottom: 20px; color: #333;">Search Your Result</h3>
                 <form id="searchForm">
-                    <div class="form-group">
-                        <label for="examType">Course</label>
-                        <select id="examType" required>
-                            <option value="">Select Examination</option>
-                            <option value="mbbs">MBBS</option>
-                            <option value="bds">BDS</option>
-                            <option value="bams">BAMS</option>
-                            <option value="bhms">BHMS</option>
-                            <option value="bums">BUMS</option>
-                            <option value="bpth">BPTh</option>
-                            <option value="nursing">Nursing</option>
-                        </select>
+                    <table class="form-table">
+                        <tr>
+                            <td><label for="examType">COURSE:</label></td>
+                            <td>
+                                <select id="examType" required>
+                                    <option value="mbbs2023">MBBS(2023)</option>
+                                    <option value="mbbs2021">MBBS(2021)</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="classYear">CLASS:</label></td>
+                            <td>
+                                <select id="classYear" required>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="prnNumber">SEAT NUMBER:</label></td>
+                            <td>
+                                <input type="text" id="prnNumber" required>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    <div class="btn-container">
+                        <button type="submit" class="btn">Submit</button>
                     </div>
-                    <div class="form-group">
-                        <label for="prnNumber">Seat Number</label>
-                        <input type="text" id="prnNumber" placeholder="Enter your 6-digit Seat Number" required pattern="\d{6}" maxlength="6" oninput="this.value = this.value.replace(/[^0-9]/g, '');" title="Please enter a 6-digit number.">
-                    </div>
-                    <div class="form-group">
-                        <label for="motherName">Mother's Name</label>
-                        <input type="text" id="motherName" placeholder="Enter your mother's first and last name" required pattern="[A-Za-z]+ [A-Za-z]+" oninput="this.value = this.value.replace(/[^A-Za-z ]/g, '');" title="Please enter first and last name separated by a space.">
-                    </div>
-
-                    <button type="submit" class="btn">View Result</button>
                 </form>
             </div>
 
@@ -74,20 +192,14 @@
             </div>
 
             <div class="result-section" id="resultSection">
-                <!-- Image will be displayed if configured -->
                 <img id="resultImage" class="result-image" style="display: none;" alt="Result">
                 
-                <!-- Default text message -->
                 <h2 class="result-text" id="resultText">
                     SOJA MADARCHOD
                 </h2>
                 
                 <button class="btn btn-secondary" onclick="resetForm()">Search Again</button>
             </div>
-        </div>
-
-        <div class="footer">
-            <p>&copy; 2025 Maharashtra University of Health Sciences, Nashik</p>
         </div>
     </div>
 
